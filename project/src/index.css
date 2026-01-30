@@ -1,0 +1,346 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-glass: rgba(255, 255, 255, 0.8);
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --border-primary: #e2e8f0;
+  --accent-primary: #4f46e5;
+  /* Indigo 600 */
+  --accent-secondary: #0ea5e9;
+  /* Sky 500 */
+  --accent-success: #10b981;
+  --accent-danger: #ef4444;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --grid-color: rgba(79, 70, 229, 0.03);
+}
+
+.dark {
+  --bg-primary: #020617;
+  --bg-surface: #0f172a;
+  --bg-glass: rgba(15, 23, 42, 0.8);
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --border-primary: #1e293b;
+  --accent-primary: #6366f1;
+  /* Indigo 500 */
+  --accent-secondary: #38bdf8;
+  --accent-success: #10b981;
+  --accent-danger: #f43f5e;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.6);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.7);
+  --grid-color: rgba(99, 102, 241, 0.03);
+}
+
+@layer utilities {
+
+  /* Custom Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes floatSlow {
+
+    0%,
+    100% {
+      transform: translate(0px, 0px);
+    }
+
+    33% {
+      transform: translate(30px, -50px);
+    }
+
+    66% {
+      transform: translate(-20px, 20px);
+    }
+  }
+
+  @keyframes pulse-glow {
+
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.7);
+    }
+
+    50% {
+      opacity: 0.8;
+      transform: scale(0.95);
+      box-shadow: 0 0 0 10px rgba(147, 51, 234, 0);
+    }
+  }
+
+  @keyframes shake {
+
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+      transform: translateX(-5px);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+      transform: translateX(5px);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  @keyframes glow {
+
+    0%,
+    100% {
+      box-shadow: 0 0 5px rgba(59, 130, 246, 0.5), 0 0 10px rgba(59, 130, 246, 0.3);
+    }
+
+    50% {
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.5);
+    }
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Animation Classes */
+  .animate-fadeIn {
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  .animate-slideUp {
+    animation: slideUp 0.6s ease-out;
+  }
+
+  .animate-slideInLeft {
+    animation: slideInLeft 0.8s ease-out;
+  }
+
+  .animate-slideInRight {
+    animation: slideInRight 0.8s ease-out;
+  }
+
+  .animate-scaleIn {
+    animation: scaleIn 0.5s ease-out;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-floatSlow {
+    animation: floatSlow 6s ease-in-out infinite;
+  }
+
+  .animate-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+
+  .animate-rotate {
+    animation: rotate 2s linear infinite;
+  }
+
+  /* Delay Classes */
+  .delay-100 {
+    animation-delay: 0.1s;
+  }
+
+  .delay-200 {
+    animation-delay: 0.2s;
+  }
+
+  .delay-300 {
+    animation-delay: 0.3s;
+  }
+
+  .delay-400 {
+    animation-delay: 0.4s;
+  }
+
+  .delay-500 {
+    animation-delay: 0.5s;
+  }
+
+  .delay-600 {
+    animation-delay: 0.6s;
+  }
+
+  .delay-700 {
+    animation-delay: 0.7s;
+  }
+
+  .delay-800 {
+    animation-delay: 0.8s;
+  }
+
+  /* Professional Utilities */
+  .grid-pattern {
+    background-image: radial-gradient(var(--grid-color) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .glass-card {
+    background: var(--bg-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-primary);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .btn-modern {
+    @apply transition-all duration-300 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .scale-in {
+    animation: scale-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(90deg,
+        rgba(255, 255, 255, 0) 0,
+        rgba(255, 255, 255, 0.2) 20%,
+        rgba(255, 255, 255, 0.5) 60%,
+        rgba(255, 255, 255, 0));
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+}

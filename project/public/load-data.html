@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Load Data</title>
+</head>
+<body>
+    <script type="module">
+        // Load the localStorage data
+        const localStorageData = {
+            "schools": "[{\"id\":\"1\",\"name\":\"Government High School\",\"location\":\"Karachi\",\"code\":\"GHS001\",\"created_by\":\"asma_ayesha\",\"created_at\":\"2024-01-15T00:00:00.000Z\"},{\"id\":\"2\",\"name\":\"City Model School\",\"location\":\"Lahore\",\"code\":\"CMS002\",\"created_by\":\"asma_ayesha\",\"created_at\":\"2024-02-20T00:00:00.000Z\"}]",
+            "teachers": "[]",
+            "mentors": "[]",
+            "audits": "[]",
+            "infrastructure_audits": "[]"
+        };
+        
+        // Save to localStorage
+        Object.keys(localStorageData).forEach(key => {
+            localStorage.setItem(key, localStorageData[key]);
+        });
+        
+        // Mark migration as not completed so it runs
+        localStorage.removeItem('supabase_migration_completed');
+        
+        console.log('Data loaded to localStorage');
+        
+        // Redirect to the main app
+        window.location.href = '/';
+    </script>
+</body>
+</html>

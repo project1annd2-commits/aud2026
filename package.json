@@ -1,0 +1,17 @@
+{
+  "name": "supabase-to-firebase-migration",
+  "version": "1.0.0",
+  "description": "Migrate Supabase (Postgres) data to Firebase Firestore.",
+  "main": "migrate_to_firebase.js",
+  "type": "module",
+  "scripts": {
+    "migrate": "node migrate_to_firebase.js"
+  },
+  "dependencies": {
+    "firebase-admin": "^11.10.1",
+    "p-retry": "^7.0.1",
+    "minimist": "^1.2.8",
+    "@supabase/supabase-js": "^2.39.3",
+    "dotenv": "^16.3.1"
+  }
+}
