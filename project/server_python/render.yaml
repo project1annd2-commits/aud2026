@@ -1,0 +1,22 @@
+databases:
+  - name: mongo_db
+    databaseName: school_audit_db
+    user: project1annd2_db_user
+    plan: free
+
+services:
+  - type: web
+    name: school-audit-api
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: MONGODB_URI
+        fromDatabase:
+          name: mongo_db
+          property: connectionString
+      - key: PORT
+        value: 5000
+      - key: PYTHONPATH
+        value: .
+    healthCheckPath: /
