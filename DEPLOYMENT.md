@@ -13,19 +13,28 @@ The frontend is already connected to GitHub at: https://github.com/project1annd2
    - Publish directory: `project/dist`
 5. Click "Deploy site"
 
-## Backend - Render (CLI Deployment)
+## Backend - Render (Blueprint Deployment)
 
-### Option 1: Blueprint Deployment (Recommended)
-The repository includes a `render.yaml` file in `project/server_python/` for Blueprint deployment:
+The repository now includes `render.yaml` in the root directory for Blueprint deployment.
 
-1. Push the code to GitHub (already done)
-2. Go to [Render Dashboard](https://dashboard.render.com)
-3. Click "New" > "Blueprint"
-4. Connect your GitHub repository
-5. Render will auto-detect the `render.yaml` file
-6. Review the configuration and click "Apply"
+### Deploy via Render Blueprint:
+1. Go to [Render Dashboard](https://dashboard.render.com)
+2. Click "New" > "Blueprint"
+3. Connect your GitHub repository `project1annd2-commits/aud2026`
+4. Render will auto-detect the `render.yaml` file
+5. Review the configuration:
+   - Database: `mongo_db` (MongoDB)
+   - Web Service: `school-audit-api` (Python/FastAPI)
+6. Click "Apply" to deploy
 
-### Option 2: Manual Web Service Deployment
+### Environment Variables:
+The `render.yaml` includes:
+- `MONGODB_URI`: Auto-connected from the mongo_db database
+- `PORT`: 5000
+- `PYTHONPATH`: project/server_python
+
+## Manual Web Service Deployment (Alternative)
+
 1. Go to [Render Dashboard](https://dashboard.render.com)
 2. Click "New" > "Web Service"
 3. Configure:
@@ -38,12 +47,6 @@ The repository includes a `render.yaml` file in `project/server_python/` for Blu
    - `MONGODB_URI`: Your MongoDB connection string
    - Example: `mongodb+srv://project1annd2_db_user:mKhiz4Uy6ObbAeGV@cluster0.dvnoiyy.mongodb.net/school_audit_db?appName=Cluster0`
 5. Click "Create Web Service"
-
-## Environment Variables Needed
-
-For the backend, ensure these environment variables are set in Render:
-- `MONGODB_URI`: MongoDB connection string
-- `PORT`: 5000 (optional, defaults to 5000)
 
 ## Frontend API Configuration
 
@@ -59,15 +62,10 @@ Or create a `.env` file in `project/` with:
 VITE_API_URL=https://your-render-app.onrender.com
 ```
 
-## Quick Deploy Commands
+## Quick Reference
 
-If you have the Render CLI installed:
-```bash
-# Login to Render
-render login
-
-# Deploy using Blueprint
-render blueprint apply
-```
-
-Note: The Render CLI can be installed via: `npm install -g @render-com/cli` (requires authentication)
+| Component | Location | Deployment Method |
+|-----------|----------|-------------------|
+| Frontend | `project/` | Netlify or GitHub Pages |
+| Backend | `project/server_python/` | Render Blueprint (render.yaml) |
+| Database | MongoDB Atlas | Render managed or external |
